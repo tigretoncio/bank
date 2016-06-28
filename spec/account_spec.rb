@@ -12,7 +12,20 @@ describe Account do
   context "adding deposits" do
     it "when deposit of 2000, balance increases by 2000" do
       account.deposit(2000)
-      expect(change{account.balance}.by(2000))
+      expect(change{ account.balance }.by(2000))
+    end
+  end
+
+  context "withdrawing money" do
+    it "when withdrawing 500, balance reduces by 500" do
+      account.deposit(2000)
+      account.withdraw(500)
+      expect(change{ account.balance }.by(-500))
+    end
+
+    it "when withdrawing money with balance 0, overdraft allowed" do
+      account.withdraw(250)
+      expect(account.balance).to eq -250
     end
   end
 end
