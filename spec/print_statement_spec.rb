@@ -13,7 +13,7 @@ describe PrintStatement do
   end
 
   it "given 1 line transaction, it prints it" do
-    transaction = "28-06-2016 || 1000 || || 1000"
+    transaction = "28-06-2016 || 1000 || || 1000\n"
     expect(printer1.print_statement()).to eq transaction
   end
 end

@@ -1,12 +1,12 @@
 class PrintStatement
-  HEADER ="date\t||\tcredit\t||\tdebit\t||\tbalance\n".freeze
+  HEADER ="date || credit || debit || balance ".freeze
   EMPTY = "no recorded transactions".freeze
 
  attr_reader :date, :amount, :type, :amount, :statements
 
   def initialize(account)
     @account = account
-    @statements = @account.statement
+    @statements = @account.statement.reverse
   end
 
   def print_statement()
@@ -21,7 +21,7 @@ class PrintStatement
       else
         result += " || #{@amount} ||"
       end
-      result += "#{@balance}"
+      result += "#{@balance}\n"
       print result
     end
     result
@@ -35,8 +35,4 @@ class PrintStatement
       @amount = statements[index][2]
       @balance = statements[index][3]
     end
-
-    def check_transaction(type)
-    end
-
 end
