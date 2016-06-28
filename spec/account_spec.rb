@@ -40,5 +40,15 @@ describe Account do
       today = Time.now.strftime("%d %m %Y")
       expect(account.timestamp.strftime("%d %m %Y")).to eq today
     end
+
+    it "when a deposit is done, transaction type credit is registered" do
+      account.deposit(100)
+      expect(account.transaction_type).to eq "credit"
+    end
+
+    it "when a withdrawal is done, transaction type debit is registered" do
+      account.withdraw(100)
+      expect(account.transaction_type).to eq "debit"
+    end
   end
 end
