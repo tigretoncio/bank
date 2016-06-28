@@ -1,4 +1,5 @@
 require 'account'
+require 'date'
 
 describe Account do
   subject(:account) { described_class.new }
@@ -34,9 +35,10 @@ describe Account do
   end
 
   context "account statement" do
-    xit "when a deposit is done, date is logged" do
+    it "when a deposit is done today, date is logged" do
       account.deposit(500)
-      expect()
+      today = Time.now.strftime("%d %m %Y")
+      expect(account.timestamp.strftime("%d %m %Y")).to eq today
     end
   end
 end
