@@ -29,7 +29,7 @@ gem 'timecop'
 A simple design of 2 classes has been chosen:   
 
 - **Account**: managing the account balance, deposit and withdraw, and logging these operations  
--**PrintStatement**: managing the printing out of statements
+- **PrintStatement**: managing the printing out of statements
 
 To log the data of each transaction, a simple list of arrays have been chosen, capturing the date of transaction, (can be easily extended to TimeStamp), the transaction type (credit / debit), transaction amount and updated balance.
 
