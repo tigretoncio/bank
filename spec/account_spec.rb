@@ -50,5 +50,21 @@ describe Account do
       account.withdraw(100)
       expect(account.transaction_type).to eq "debit"
     end
+
+    it "when a transaction is done, amount is stored" do
+      account.withdraw(100)
+      expect(account.amount).to eq 100
+    end
+
+    it "when a transaction happens, amount is stored" do
+      account.deposit(100)
+      expect(account.amount).to eq 100
+    end
+
+    it "when a transaction happens, all details are stored" do
+      today = Time.now.strftime("%d %m %Y")
+      account.deposit(200)
+      expect(account.statement).to include([today, "credit",200,200])
+    end
   end
 end
