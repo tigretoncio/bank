@@ -2,7 +2,7 @@ class PrintStatement
   HEADER ="date || credit || debit || balance ".freeze
   EMPTY = "no recorded transactions".freeze
 
- attr_reader :date, :amount, :type, :amount, :statements
+ attr_reader :date, :amount, :type, :amount, :statements, :result
 
   def initialize(account)
     @account = account
@@ -10,21 +10,23 @@ class PrintStatement
   end
 
   def print_statement()
-    print(HEADER)
     return EMPTY if statements == []
     result = ""
     statements.length.times do |i|
       get_data(i)
-      result = "#{@date} || "
+      @result = "#{@date} || "
       if type == "credit"
-        result += "#{@amount} || || "
+        @result += "#{@amount} || || "
       else
-        result += " || #{@amount} ||"
+        @result += " || #{@amount} ||"
       end
-      result += "#{@balance}\n"
-      print result
+      @result += "#{@balance}\n"
     end
-    result
+    @result
+  end
+
+  def print_result()
+    print result
   end
 
   private
