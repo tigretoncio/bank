@@ -27,5 +27,16 @@ describe Account do
       account.withdraw(250)
       expect(account.balance).to eq -250
     end
+
+    it "if overdraft exceeded, transaction error" do
+      expect{ account.withdraw(1001) }.to raise_error Account::OVERDRAFT_ERROR
+    end
+  end
+
+  context "account statement" do
+    xit "when a deposit is done, date is logged" do
+      account.deposit(500)
+      expect()
+    end
   end
 end
