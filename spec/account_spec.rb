@@ -62,7 +62,7 @@ describe Account do
     end
 
     it "when a transaction happens, all details are stored" do
-      today = Time.now.strftime("%d %m %Y")
+      today = Time.now.strftime("%d-%m-%Y")
       account.deposit(200)
       expect(account.statement).to include([today, "credit",200,200])
     end

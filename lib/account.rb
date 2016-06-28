@@ -25,10 +25,11 @@ class Account
     log_transaction()
   end
 
+
+
   private
 
     def log_transaction()
-
       current = [get_date(timestamp), transaction_type, amount, balance]
       statement << current
     end
@@ -40,6 +41,6 @@ class Account
     end
 
     def get_date(date)
-      date.strftime("%d %m %Y")
+      date.strftime("%d-%m-%Y")
     end
 end
