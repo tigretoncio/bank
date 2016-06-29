@@ -1,15 +1,17 @@
 class Transaction
-  attr_reader :date, :type, :amount, :log
+  attr_reader :date, :type, :amount, :balance
 
-  def initialize(type, amount)
-    @date = get_date(Time.now)
+  def initialize(type, amount, balance)
+    @date = Time.now.strftime("%d-%m-%Y")
     @type = type
     @amount = amount
+    @balance = balance
   end
 
-  private
-    def get_date(date)
-        date.strftime("%d-%m-%Y")
-    end
+  def self.get_transaction()
+    result = "#{date} || "
+    result += self.type == "credit" ? "#{amount} ||" : " || #{amount}"
+    result += " || #{balance}"
+  end
 
 end

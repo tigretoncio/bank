@@ -7,42 +7,36 @@ class Account
               :transaction_type, :amount, :statement,
               :transaction
 
-
-  def initialize(transaction)
-    @transaction = transaction
+  def initialize()
     @balance = 0
     @statement = []
   end
 
-  def deposit(amount)
-    @balance += amount
-    t = Transaction.new()
-    log_transaction()
+  def make(type, amount)
+    case type
+    when "deposit"
+      @balance += amount
+    when "withdraw"
+      fail OVERDRAFT_ERROR if balance - amount < -OVERDRAFT_LIMIT
+      @balance -= amount
+    else
+      fail "error: please check operation type"
+    end
+    # if type == "deposit"
+    #   @balance += amount
+    # else if type == "withdraw"
+    #   fail OVERDRAFT_ERROR if balance - amount < -OVERDRAFT_LIMIT
+    #   @balance -= amount
+    # else
+    #   fail "error: please check operation type"
+    # end
+    transaction = Transaction.new(type, amount, @balance)
   end
 
-  def withdraw(amount)
-    fail OVERDRAFT_ERROR if balance - amount < -OVERDRAFT_LIMIT
-    @balance -= amount
-    save_details(amount, "debit")
-    log_transaction()
-  end
+  # def withdraw(amount)
+  #   fail OVERDRAFT_ERROR if balance - amount < -OVERDRAFT_LIMIT
+  #   @balance -= amount
+  #   transaction = Transaction.new("debit", amount, @balance)
+  # end
 
-
-
-  private
-
-    def log_transaction()
-      current = [get_date(timestamp), transaction_type, amount, balance]
-      statement << current
-    end
-
-    def save_details(amount, type)
-      @timestamp = Time.now
-      @amount = amount
-      @transaction_type = type
-    end
-
-    def get_date(date)
-      date.strftime("%d-%m-%Y")
-    end
 end
