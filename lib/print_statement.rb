@@ -6,23 +6,16 @@ class PrintStatement
 
   def initialize(account)
     @account = account
-    @statements = @account.statement.reverse
+    @statements = @account.transactions.reverse
   end
 
   def print_statement()
-    return EMPTY if statements == []
-    result = ""
-    statements.length.times do |i|
-      get_data(i)
-      @result = "#{@date} || "
-      if type == "credit"
-        @result += "#{@amount} || || "
-      else
-        @result += " || #{@amount} ||"
-      end
-      @result += "#{@balance}\n"
+    return EMPTY if @statements == []
+    result = HEADER
+    @statements.each do |transaction|
+      result += transaction.get_transaction()
     end
-    @result
+    result
   end
 
   def print_result()

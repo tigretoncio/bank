@@ -3,13 +3,11 @@ require 'date'
 class Account
   OVERDRAFT_LIMIT = 1000
   OVERDRAFT_ERROR = "Transaction failed: Maximumm overdraft exceeded"
-  attr_reader :balance, :timestamp,
-              :transaction_type, :amount, :statement,
-              :transaction
+  attr_reader :balance, :transactions
 
   def initialize()
     @balance = 0
-    @statement = []
+    @transactions = []
   end
 
   def make(type, amount)
@@ -17,26 +15,17 @@ class Account
     when "deposit"
       @balance += amount
     when "withdraw"
-      fail OVERDRAFT_ERROR if balance - amount < -OVERDRAFT_LIMIT
+      fail OVERDRAFT_ERROR if isOverdraft(@balance, amount)
       @balance -= amount
     else
       fail "error: please check operation type"
     end
-    # if type == "deposit"
-    #   @balance += amount
-    # else if type == "withdraw"
-    #   fail OVERDRAFT_ERROR if balance - amount < -OVERDRAFT_LIMIT
-    #   @balance -= amount
-    # else
-    #   fail "error: please check operation type"
-    # end
     transaction = Transaction.new(type, amount, @balance)
+    @transactions << transaction
   end
 
-  # def withdraw(amount)
-  #   fail OVERDRAFT_ERROR if balance - amount < -OVERDRAFT_LIMIT
-  #   @balance -= amount
-  #   transaction = Transaction.new("debit", amount, @balance)
-  # end
-
+  private
+    def isOverdraft(balance, amount)
+      balance - amount < -OVERDRAFT_LIMIT
+    end
 end

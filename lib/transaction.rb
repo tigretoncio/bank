@@ -8,10 +8,10 @@ class Transaction
     @balance = balance
   end
 
-  def self.get_transaction()
-    result = "#{date} || "
-    result += self.type == "credit" ? "#{amount} ||" : " || #{amount}"
-    result += " || #{balance}"
+  def get_transaction()
+    result = "#{@date} || "
+    result += @type == "deposit" ? "#{format("%.2f",@amount)} ||" : " || #{format("%.2f",@amount)}"
+    result += " || #{format("%.2f",@balance)}"
   end
 
 end

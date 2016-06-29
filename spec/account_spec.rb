@@ -34,17 +34,4 @@ describe Account do
       expect{ account.make("withdraw", 1001) }.to raise_error Account::OVERDRAFT_ERROR
     end
   end
-
-  context "account statement" do
-    xit "when a deposit is done today, date is logged" do
-      account.make("deposit", 500)
-      today = Time.now.strftime("%d %m %Y")
-      expect(account.timestamp.strftime("%d %m %Y")).to eq today
-    end
-
-    xit "when a deposit is done, transaction type credit is registered" do
-      account.make("deposit", 100)
-      expect(account.transaction_type).to eq "credit"
-    end
-  end
 end
