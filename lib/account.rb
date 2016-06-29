@@ -4,17 +4,19 @@ class Account
   OVERDRAFT_LIMIT = 1000
   OVERDRAFT_ERROR = "Transaction failed: Maximumm overdraft exceeded"
   attr_reader :balance, :timestamp,
-              :transaction_type, :amount, :statement
+              :transaction_type, :amount, :statement,
+              :transaction
 
 
-  def initialize()
+  def initialize(transaction)
+    @transaction = transaction
     @balance = 0
     @statement = []
   end
 
   def deposit(amount)
     @balance += amount
-    save_details(amount,"credit")
+    t = Transaction.new()
     log_transaction()
   end
 

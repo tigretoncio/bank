@@ -25,3 +25,10 @@ describe "user stories" do
     expect(account.balance).to eq 5000
   end
 end
+
+# acc = Account.new
+# acc.deposit(1000)
+# acc.deposit(2000)
+# acc.withdraw(500)
+# p = PrintStatement.new(acc)
+# p.print_statement()
