@@ -22,4 +22,15 @@ class PrintStatement
     print @result
   end
 
+  private
+
+    def filter_sort(type)
+      case type
+      when "deposits"
+      when "withdraws"
+      when "asc"
+      when "desc"
+      end
+    end
+
 end
