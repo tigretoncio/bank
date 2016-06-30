@@ -1,5 +1,5 @@
 class PrintStatement
-  HEADER ="date || credit || debit || balance ".freeze
+  HEADER = "date || credit || debit  || balance\n".freeze
   EMPTY = "no recorded transactions".freeze
 
  attr_reader :date, :amount, :type, :amount, :statements, :result
@@ -9,25 +9,17 @@ class PrintStatement
     @statements = @account.transactions.reverse
   end
 
-  def print_statement()
+  def generate_statement()
     return EMPTY if @statements == []
-    result = HEADER
+    @result = HEADER
     @statements.each do |transaction|
-      result += transaction.get_transaction()
+    @result += transaction.get_transaction()
     end
-    result
+    @result
   end
 
   def print_result()
-    print result
+    print @result
   end
 
-  private
-
-    def get_data(index)
-      @date = statements[index][0]
-      @type = statements[index][1]
-      @amount = statements[index][2]
-      @balance = statements[index][3]
-    end
 end

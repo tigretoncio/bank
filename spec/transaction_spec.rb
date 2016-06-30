@@ -28,13 +28,13 @@ describe Transaction do
 
     it "when a deposit happens, line can correctly printed" do
       today = Time.now.strftime("%d-%m-%Y")
-      result = "#{today} ||  || 1000.00 || 1000.00"
+      result = "#{today} ||  || 1000.00 || 1000.00\n"
       expect(transaction.get_transaction).to eq result
     end
 
     it "when a withdraw happens, line can be correctly printed" do
       today = Time.now.strftime("%d-%m-%Y")
-      result = "#{today} ||  || 1000.00 || 1000.00"
+      result = "#{today} ||  || 1000.00 || 1000.00\n"
       expect(transaction.get_transaction).to eq result
     end
   end
