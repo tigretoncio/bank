@@ -2,17 +2,18 @@ class PrintStatement
   HEADER = "date || credit || debit  || balance\n".freeze
   EMPTY = "no recorded transactions".freeze
 
- attr_reader :date, :amount, :type, :amount, :statements, :result
+ attr_reader :result
 
   def initialize(account)
     @account = account
     @statements = @account.transactions.reverse
   end
 
-  def generate_statement()
+  def generate_statement(type)
     return EMPTY if @statements == []
     @result = HEADER
-    @statements.each do |transaction|
+    filtered_data = filter_sort(type)
+    filtered_data.each do |transaction|
     @result += transaction.get_transaction()
     end
     @result
@@ -34,6 +35,8 @@ class PrintStatement
         return @statements.sort_by {|t| t.date}
       when "desc"
         return @statements.sort_by {|t| t.date}.reverse
+      else
+        return @statements
       end
     end
 
