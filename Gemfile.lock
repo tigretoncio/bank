@@ -42,7 +42,7 @@ GEM
       ast (~> 2.2)
     pkg-config (1.1.7)
     powerpack (0.1.1)
-    rack (1.6.4)
+    rack (2.0.8)
     rack-test (0.6.3)
       rack (>= 1.0)
     rainbow (2.1.0)
