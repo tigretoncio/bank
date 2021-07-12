@@ -1,7 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.4.0)
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
     ast (2.3.0)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -42,6 +43,7 @@ GEM
       ast (~> 2.2)
     pkg-config (1.1.7)
     powerpack (0.1.1)
+    public_suffix (4.0.6)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
